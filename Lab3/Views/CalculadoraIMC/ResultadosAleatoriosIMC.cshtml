@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "IMC Aleatorio";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Resultado IMC
+    </title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    
+    <h1>
+        Resultados
+    </h1>
+
+    <div class="seccion_1" id="s1">
+        <ul>
+            <li>IMC menor que 18.5 -> peso insuficiente</li>
+            <li>IMC 18.5 y 24.9 -> peso normal</li>
+            <li>IMC mayor que 25-> sobrepeso</li>
+        </ul>
+
+        <a class="btn btn-info" @Html.ActionLink("Volver al inico", "Index", "Home") </a>
+        <hr />
+    </div>
+
+    <div class="seccion_2" id="s2">
+        <table class="table">
+            <tr>
+                <th> Id </th>
+                <th> Nombre </th>
+                <th> Peso </th>
+                <th> Estatura </th>
+                <th> IMC </th>
+            </tr>
+
+            @for (int indice = 0; indice < 30; indice++)
+            {
+                <tr>
+                    <td> @ViewBag.personas[indice].Id </td>
+                    <td> @ViewBag.personas[indice].Nombre </td>
+                    <td> @ViewBag.personas[indice].Peso </td>
+                    <td> @ViewBag.personas[indice].Estatura </td>
+                    <td>
+                        @if (ViewBag.resultIMC[indice] > 18.5 && ViewBag.resultIMC[indice] < 25)
+                        {
+                            <div class="text-success">
+                                <p> @ViewBag.resultIMC[indice] </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-danger">
+                                <p> @ViewBag.resultIMC[indice] </p>
+                            </div>
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+        <hr />
+    </div>
+</body>
+</html>
+
